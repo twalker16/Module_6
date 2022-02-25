@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "./public")));
 app.get('/api/robots', (req, res) => {
     rollbar.info('lol, they thought that button actually worked')
     try {
-        res.status(200).send(botsArr)
+        res.status(200).send(bots)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
