@@ -1,9 +1,8 @@
+const { Builder, Capabilities, By } = require("selenium-webdriver");
 
-const { Builder, Capabilities, By } = require('selenium-webdriver')
+require("chromedriver");
 
-require('chromedriver')
-
-const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
+const driver = new Builder().withCapabilities(Capabilities.chrome()).build();
 
 beforeEach(async () => {
     await driver.get('http://localhost:3000/')
