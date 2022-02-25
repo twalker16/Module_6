@@ -38,8 +38,9 @@ test('clicking draw draws bot cards', async ()=>{
 test('clicking see all bots gives you bots', async ()=>{
     let seeAll = await driver.findElement(By.css('#see-all'))
     await seeAll.click()
-    let allBots = await driver.findElement(By.css('#all-bots'))
-    expect(allBots.length).toBeGreaterThan(1)
+    await driver.sleep(4000)
+    let allBots = await (await driver.findElement(By.css('#all-bots')))
     console.log(allBots.length)
+    expect(allBots.length).toBeGreaterThan(1)
 })
    
