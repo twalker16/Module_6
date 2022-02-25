@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, "./public")));
 app.get('/api/robots', (req, res) => {
     try {
         res.status(200).send(botsArr)
+        rollbar.info('lol, they thought that button actually worked')
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
@@ -33,6 +34,7 @@ app.get('/api/robots/five', (req, res) => {
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
         res.status(200).send({choices, compDuo})
+        rollbar.debug('wait, our site actually works?')
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
         res.sendStatus(400)
@@ -60,9 +62,11 @@ app.post('/api/duel', (req, res) => {
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
             res.status(200).send('You lost!')
+            rollbar.warning("This player isn't very good")
         } else {
             playerRecord.losses++
             res.status(200).send('You won!')
+            rollbar.critical("This game is too easy")
         }
     } catch (error) {
         console.log('ERROR DUELING', error)
